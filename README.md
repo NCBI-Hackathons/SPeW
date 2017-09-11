@@ -1,0 +1,2 @@
+# Automatic_Packaging_Bioinformatics
+Automatic Packaging and Distribution of Bioinformatics Pipelines
