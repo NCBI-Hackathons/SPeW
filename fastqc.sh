@@ -2,10 +2,17 @@
 #fastqc module
 #Natalie nlr23@pitt.edu
 
-inPath=./#fastqfile to go through quality control program
+while getopts i:o: option
+do 
+	case "${option}"
+	in
+	i) inPath=${OPTARG};;
+	o) outPath=${OPTARG};;
+	esac
+done
 
 echo 'Performing QC of fastq files'
-
+module load FastQC
 for f in $inPath/*.fastq.gz; do
 	fileName=$(echo ${f})
 	echo "Processing $fileName file"
