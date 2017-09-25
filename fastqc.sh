@@ -1,7 +1,7 @@
 #!/bin/bash
 #fastqc module
 #Natalie nlr23@pitt.edu
-
+#usage: sh fastqc.sh -i inPath -o outPath
 while getopts i:o: option
 do 
 	case "${option}"
