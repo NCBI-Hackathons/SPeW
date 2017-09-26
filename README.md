@@ -1,2 +1,2 @@
-# Sequencing Pipeline Wrapper (SPeW)
+# SPeW: Sequencing Pipeline Wrapper
 ## Automatic Packaging and Distribution of Bioinformatics Pipelines
