@@ -2,6 +2,8 @@
 # Testing version of trimming sequencing data
 # Zhou (Ark) Fang zhf9@pitt.edu
 
+# e.g. ./trimming.sh -i ./RNAseq_files -s -a1 ADATPER_FWD -a2 ADATPER_REV
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -13,9 +15,8 @@ case $key in
     shift # past value
     ;;
     -s|--singleEnd)
-    singleEnd="$2"
+    singleEnd=true
     shift # past argument
-    shift # past value
     ;;
     -a1|--adapter1)
     adapter1="$2"
@@ -43,7 +44,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ $DEFAULT = true ];  then
     inPath=./RNAseq_files #intermidiate input file path for trimming
-    singleEnd=true #by default, subject to change
+    singleEnd=false #by default, subject to change
     adapter1=ADATPER_FWD
     adapter2=ADATPER_REV
 fi
@@ -76,7 +77,7 @@ if [ "$singleEnd" = true ] ; then
              outfileName2=${fileName1%$suffix}
              outfileName1+="1_trimmed.fastq.gz"
              outfileName2+="2_trimmed.fastq.gz"
-            cutadapt -a $adapter1 -A $adapter2 -m 20 -o $outfileName1 $outfileName2 $fileName1 $fileName2 &
+           cutadapt -a $adapter1 -A $adapter2 -m 20 -o $outfileName1 $outfileName2 $fileName1 $fileName2 &
          fi
      done
      wait
