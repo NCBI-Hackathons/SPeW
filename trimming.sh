@@ -1,9 +1,52 @@
 #!/bin/bash
 # Testing version of trimming sequencing data
 # Zhou (Ark) Fang zhf9@pitt.edu
-inPath=. #intermidiate input file path for trimming
-singleEnd=false #by default, subject to change
-adapter=ADATPER_FWD
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    -i|--inPath)
+    inPath="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -s|--singleEnd)
+    singleEnd="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -a1|--adapter1)
+    adapter1="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -a2|--adapter2)
+    adapter2="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --default)
+    DEFAULT=true
+    shift # past argument
+    ;;
+    *)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+# echo FILE EXTENSION  = "${EXTENSION}"
+
+if [ $DEFAULT = true ];  then
+    inPath=./RNAseq_files #intermidiate input file path for trimming
+    singleEnd=true #by default, subject to change
+    adapter1=ADATPER_FWD
+    adapter2=ADATPER_REV
+fi
 
 if [ "$singleEnd" = true ] ; then
     echo 'Single-end sequencing file used'
@@ -16,9 +59,10 @@ if [ "$singleEnd" = true ] ; then
             outfileName=${fileName%$suffix}
             outfileName+="_trimmed.fastq.gz"
             echo $outfileName
-#            cutadapt -a $adapter -m 20 -o $outPath/$outfileName\_trimmed.fastq.gz $inPath/$fileName
+            cutadapt -a $adapter1 -m 20 -o $outfileName $fileName &
         fi
     done
+    wait
  else
      echo 'Pair-end sequencing files used'
      for f in $inPath/*1.fastq.gz; do
@@ -32,9 +76,10 @@ if [ "$singleEnd" = true ] ; then
              outfileName2=${fileName1%$suffix}
              outfileName1+="1_trimmed.fastq.gz"
              outfileName2+="2_trimmed.fastq.gz"
-              cutadapt -a $adapter -A $adapter -m 20 -o $outPath/$outfileName\_trimmed_R1.fastq.gz $outPath/$outfileName\_trimmed_R2.fastq.gz $inPath/$fileName1 $inPath/$fileName2
+            cutadapt -a $adapter1 -A $adapter2 -m 20 -o $outfileName1 $outfileName2 $fileName1 $fileName2 &
          fi
      done
+     wait
 fi
 
 echo "Sequencing trimming completed."
