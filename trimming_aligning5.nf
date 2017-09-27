@@ -15,17 +15,26 @@ sequences = file(params.in)
 /* records = "/zfs1/ncbi-workshop/AP/RNAseq/AlignedReads/"  */
 
 process modules{
-script"
+script:
         """
-        bash module load bowtie2
-        bash module load tophat
-        bash module load cutadapt
+	module load FastQC
+       	module load bowtie2
+        module load tophat
+        module load cutadapt
         """
 }
 
+process fastqc{
+input:
+file reads from sequences
 
+script:
+	"""
+	mkdir fastqc_logs
+	fastqc -o fastqc_logs -f fastq -q ${reads}
+	"""
+}
 process trimming{
-
 
 input:
 file inFiles
@@ -43,8 +52,6 @@ script:
    bash /zfs1/nci-workshop/AP/nextflow/trimming.sh -i inPath -a1 adapter1 -a2 adapter2
    """
 }
-
-
 
 process alignment {
 
