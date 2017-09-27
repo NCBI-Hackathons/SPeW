@@ -5,7 +5,7 @@ Amanda Poholek (Lead), Argus Sun, Zhou Fang (Ark), Natalie Rittenhouse, Rahil Se
 ## Introduction
 Taking a sequencing pipeline from individual pieces on your workstation to a seamless pipeline that can be run by any user is currently a challenge. Here, we create a proof-of-principle simple RNA-seq pipeline using separate Bash shell scripts that are linked together using NextFlow as a pipeline management tool. This is then wrapped using Docker for distribution and seamless running on other workstations without dependency issues. 
 
-## SPeW is a framework for taking a NextGen Seq pipeline (such as RNA-seq, ChIP-seq or ATAC-seq) in any language, and using NextFlow as a pipeline management system to create a flexible, user-friendly pipeline that can be shared in a container platform.
+SPeW is a framework for taking a NextGen Seq pipeline (such as RNA-seq, ChIP-seq or ATAC-seq) in any language, and using NextFlow as a pipeline management system to create a flexible, user-friendly pipeline that can be shared in a container platform.
 
 This project was part of the September 2017 Pitt-NCBI Hackathon in Pittsburgh PA
 
@@ -41,6 +41,8 @@ As a starting point, we generated a basic RNA-seq pipeline that was made up of i
 3) Alignment
 4) Annotation
 5) Differential Gene Expression (DGE)
+
+Inputs and outputs were defined in NextFlow to link processess together. All outputs were placed in a final directory that had final products as well as intermediate files. 
 
 ### Workflow Management Strategy Discussion with a Group of ~25 Computational Biologists and Data Scientists
 
