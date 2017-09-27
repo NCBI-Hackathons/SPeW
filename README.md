@@ -1,19 +1,30 @@
 # SPeW: SeqPipeWrap 
+Pitt-NCBI Hackathon Team
+Amanda Poholek (Lead), Argus Sun, Zhou Fang (Ark), Natalie Rittenhouse, Rahil Sethi, Ramya Mallela 
 
 ## Introduction
 Taking a sequencing pipeline from individual pieces on your workstation to a seamless pipeline that can be run by any user is currently a challenge. Here, we create a proof-of-principle simple RNA-seq pipeline using separate Bash shell scripts that are linked together using NextFlow as a pipeline management tool. This is then wrapped using Docker for distribution and seamless running on other workstations without dependency issues. 
+
+## SPeW is a framework for taking a NextGen Seq pipeline (such as RNA-seq, ChIP-seq or ATAC-seq) in any language, and using NextFlow as a pipeline management system to create a flexible, user-friendly pipeline that can be shared in a container platform.
+
+This project was part of the September 2017 Pitt-NCBI Hackathon in Pittsburgh PA
+
+## Dependencies
+Docker
+samtools
+(etc etc etc)
+
+
 
 ## Methods 
 
 ![ScreenShot](SPeW_workflow.jpg)
 
-To create the proof-of-principle simple RNA-seq pipeline, we started with writing simple Bash shell scripts for each step required in the analysis. These individual steps were then combined together by integrating them into NextFlow. In order to allow for seamless running on any workstation, Docker was then used to wrap the Nextflow code. By wrapping into a container such as Docker, all dependencies required for each step are automatically on the users workstation. Docker has the ability to be used by Sinularity, allowig the code to be utilized on a High Computing Cluster(HPC).
+To create the proof-of-principle simple RNA-seq pipeline, we started with writing simple Bash shell scripts for each step required in the analysis. These individual steps were then combined together by integrating them into NextFlow. In order to allow for seamless running on any workstation, Docker was then used to wrap the Nextflow code. By wrapping into a container such as Docker, all dependencies required for each step are automatically on the users workstation. Docker has the ability to be used by Singularity, allowing the code to be utilized on a High Computing Cluster(HPC).
 
-## Requirements 
-Docker
 
 ## Futher Directions 
-We hope to further add to the pipeline, and allow for the ability to enter the pipeline at any point. 
+We hope to add additional modules as well as modify current modules to the pipeline, and add in the ability to enter the pipeline at any point. 
 
 ## Discussion Notes
 ### Overview
