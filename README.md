@@ -10,15 +10,23 @@ SPeW is a framework for taking a NextGen Seq pipeline (such as RNA-seq, ChIP-seq
 This project was part of the September 2017 Pitt-NCBI Hackathon in Pittsburgh PA
 
 ## Dependencies
-Docker
-samtools
-FastQC
-cutadapt
-tophat2
-bowtie2
-cufflinks
-R
-NextFlow
+Docker https://www.docker.com/
+
+samtools http://www.htslib.org/
+
+FastQC https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+cutadapt https://github.com/marcelm/cutadapt
+
+tophat2 http://cole-trapnell-lab.github.io/projects/tophat/
+
+bowtie2 http://bowtie-bio.sourceforge.net/manual.shtml
+
+cufflinks https://github.com/cole-trapnell-lab/cufflinks
+
+R https://www.r-project.org/
+
+NextFlow https://www.nextflow.io/
 
 ## Methods 
 
