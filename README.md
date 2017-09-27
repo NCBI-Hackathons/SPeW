@@ -11,13 +11,21 @@ This project was part of the September 2017 Pitt-NCBI Hackathon in Pittsburgh PA
 
 ## Dependencies
 Docker https://www.docker.com/
+
 samtools http://www.htslib.org/
+
 FastQC https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
 cutadapt http://cutadapt.readthedocs.io/en/stable/guide.html
+
 tophat2 http://ccb.jhu.edu/software/tophat/index.shtml
+
 bowtie2 https://github.com/BenLangmead/bowtie
+
 cufflinks http://cole-trapnell-lab.github.io/cufflinks/
+
 R https://www.r-project.org/
+
 NextFlow https://www.nextflow.io/
 
 ## Methods 
