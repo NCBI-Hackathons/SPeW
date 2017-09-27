@@ -14,3 +14,30 @@ Docker
 
 ## Futher Directions 
 We hope to further add to the pipeline, and allow for the ability to enter the pipeline at any point. 
+
+## Discussion Notes
+This repo was created as part of an NCBI-hackathon @ Univerisity of Pittsburgh in September of 2017. During this 3 day event, several disucssions occured about the best option to accomplish our goal of creating a method to take a NextGen Seq pipeline into a flexible format that can be easily shared. This is a summary of those discussions, edited by those who were present.
+
+Most Seq pipelines are inherently a string of pre-made programs linked together by the creator according to their personal preferences or prior experience, including comfort of specific programming languages, knowledge of what algorithms exist, and word of mouth about what is "best" option to use. This typically limits sharing the pipeline to another user who may want to make small modifications, or requires installing new software in order to run. In addition, many users may choose to run their pipeline on a local machine, cloud computing or a HPC. Thus, putting a pipeline into a format or framework that manages the pipeline and allows for easy modifications for future users as well as ability to share, would be of tremendous use to many beginner or intermediate bioinformatics users. 
+
+As a starting point, we generated a basic RNA-seq pipeline that was made up of individual modules in a bash shell script. These modules are as follows:
+1) FastQC
+2) Trimming
+3) Alignment
+4) Annotation
+5) Differential Gene Expression (DGE)
+
+Next, we needed to determine a method to link these modules together where inputs and outputs are managed for you, and that a future user could add or change a module. Our ideal includes an option where the pipeline can make decisions for you. For example, given output X, th next module used where output X becomes input X could be either module Y or module Z. In addition, we considered how to package the pipeline. This included the option of either wrapping each module in a container (ie docker) that then are linked together within a larger container, or making one whole pipeline and putting it into one container.
+
+The majority of the discussion was around how to link the modules together. Several pipeline management systems were discussed, including NextFlow, snakemake, CWL (common workflow language) and Jupyter notebooks. This conversation included the entire Hackathon group (5 teams) of roughly 25 people total. Ultimately we selected NextFlow, based on the fact that we think NextFlow has the best options for our needs. There was not universal agreement about this, and we believe this will a trial and error process. One downside was no one in the room had any experience with NextFlow, thus we were testing to see if this was indeed a good option.
+
+CWL was widely dismissed by pretty much all members present, as being too labor intensive to use. A few people with CWL experience relayed how difficult and frustrating it was to use, and the time it took to learn considered not worth the effort. 
+
+Snakemake is python based and was dismissed as being less flexible than NextFlow
+
+NextFlow was chosen because it can use any language, manages inputs and outputs and is meant to be easily wrapped. Docker was chosen because Docker can be used with Singularity, thus any HPC users could use a docker image.
+
+A large part of the discussion included Jupyter notebooks as an alternative to NextFlow. This was considered to be a good in between for novice users. Many raised issues of needing to install Jupyter, however no installation should be necessary if in a container. Another option was raised to use a headless jupyter notebook that would automatically initiate and run for users not familiar with a jupyter platform, while those who are familiar and can make modifications could still do so. However, the we feel it is important to be able to encompass all languages, so this option may have inherent limitations.
+
+Based on these discussions, we chose NextFlow and here report how useful and flexible it ended up being. We hope this may help other users make more informed choices to manage their pipelines and wrap for distribution.
+
