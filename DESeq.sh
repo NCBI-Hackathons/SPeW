@@ -7,8 +7,8 @@ library(ggplot2)
 library(gplots)
 
 ## Download necessary modules 
-samples=read.table("./sample_phenotype.txt",sep="\t",header=FALSE)
-countdata <- read.table("./htseq_count.txt",sep="\t",header=TRUE)
+samples=read.table("$1",sep="\t",header=FALSE)
+countdata <- read.table("$2",sep="\t",header=TRUE)
 rownames(countdata)=countdata[,1]
 counts=countdata[,-1]
 
