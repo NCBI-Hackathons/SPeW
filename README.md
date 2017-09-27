@@ -29,9 +29,11 @@ To create the proof-of-principle simple RNA-seq pipeline, we started with writin
 ### Using Nextflow to String together Bash Scripts
 Nextflow is easily installed by using curl:
 
-'''
+```
 curl -fsSL get.nextflow.io | bash
-'''
+```
+
+After installing Nexflow, 
 
 ## Discussion Notes
 ### Overview
