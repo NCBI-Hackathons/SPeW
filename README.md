@@ -107,6 +107,24 @@ trimming.sh -i reads -a1 adapter1 -a2 adapter2
 }
 ```
 
+The output from the trimming step of RNA-seq can easily be accessed by the aligning step: 
+
+```
+process trimming{
+
+input: 
+file trim from trimmedFiles
+
+output:
+file '*.bam' into trimmedFiles
+
+script:
+align.sh trim
+```
+
+
+
+
 ## Discussion Notes
 ### Overview
 
