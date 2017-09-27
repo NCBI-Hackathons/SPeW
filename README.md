@@ -23,8 +23,6 @@ samtools
 To create the proof-of-principle simple RNA-seq pipeline, we started with writing simple Bash shell scripts for each step required in the analysis. These individual steps were then combined together by integrating them into NextFlow. In order to allow for seamless running on any workstation, Docker was then used to wrap the Nextflow code. By wrapping into a container such as Docker, all dependencies required for each step are automatically on the users workstation. Docker has the ability to be used by Singularity, allowing the code to be utilized on a High Computing Cluster(HPC).
 
 
-## Futher Directions 
-We hope to add additional modules as well as modify current modules to the pipeline, and add in the ability to enter the pipeline at any point. 
 
 ## Discussion Notes
 ### Overview
@@ -60,3 +58,5 @@ A large part of the discussion included Jupyter notebooks as an alternative to N
 
 Based on these discussions, we chose NextFlow and here report how useful and flexible it ended up being. We hope this may help other users make more informed choices to manage their pipelines and wrap for distribution.
 
+## Futher Directions 
+We hope to add additional modules as well as modify current modules to the pipeline, and add in the ability to enter the pipeline at any point. 
