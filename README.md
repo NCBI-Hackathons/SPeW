@@ -130,7 +130,7 @@ script:
 align.sh trim
 ```
 
-
+It is in this way that it is easy to string together multiple bash scripts into one complete workflow using nextflow. 
 
 
 ## Discussion Notes
