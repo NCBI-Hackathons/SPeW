@@ -130,7 +130,7 @@ script:
 align.sh trim
 ```
 
-It is in this way that it is easy to string together multiple bash scripts into one complete workflow using nextflow. 
+Nextflow seamlessly goes from one process to another by creating a 'work' folder in which all the intermediate files are placed. This work folder also ensures that if/when you run the script multiple times, the results will not be overwritten.  
 
 
 ## Discussion Notes
