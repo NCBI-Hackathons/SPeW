@@ -10,23 +10,15 @@ SPeW is a framework for taking a NextGen Seq pipeline (such as RNA-seq, ChIP-seq
 This project was part of the September 2017 Pitt-NCBI Hackathon in Pittsburgh PA
 
 ## Dependencies
-Docker https://www.docker.com/
-
-samtools http://www.htslib.org/
-
-FastQC https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-
-cutadapt http://cutadapt.readthedocs.io/en/stable/guide.html
-
-tophat2 http://ccb.jhu.edu/software/tophat/index.shtml
-
-bowtie2 https://github.com/BenLangmead/bowtie
-
-cufflinks http://cole-trapnell-lab.github.io/cufflinks/
-
-R https://www.r-project.org/
-
-NextFlow https://www.nextflow.io/
+Docker
+samtools
+FastQC
+cutadapt
+tophat2
+bowtie2
+cufflinks
+R
+NextFlow
 
 ## Methods 
 
@@ -41,7 +33,79 @@ Nextflow is easily installed by using curl:
 curl -fsSL get.nextflow.io | bash
 ```
 
-After installing Nexflow, 
+After successfully installing Nextflow, all the bash scripts are moved into a bin folder and the execute permission is granted for all the files.
+
+```
+mkdir -p bin 
+mv *.sh bin
+chmod +x *.sh
+```
+With all the bash files in the same folder, the Nextflow script can now be written. First, the environment is set and the initial input files are set as parameters: 
+
+```
+#!/usr/bin/env nextflow
+
+/*
+* input parameters for the pipeline
+*/
+params.in = "$baseDir/data/*.fastq.gz"
+```
+
+A file object is then created from the string parameter: 
+
+``` 
+inFiles = file(params.in)
+```
+
+By creating the file object, the file can now be used as the input file for the first process. Such as: 
+
+```
+process trimming{
+
+input: 
+file reads from inFiles
+}
+```
+
+The output specifies a file ('trimmed_*') that is then put into a variable(trimmedFiles) to be used in the next process. 
+
+```
+process trimming{
+
+input: 
+file reads from inFiles
+
+output:
+file 'trimmed_*' into trimmedFiles
+}
+```
+
+The script is now ready to be called. These scripts include the ability to use conditional statements: 
+
+```
+process trimming{
+
+input: 
+file reads from inFiles
+
+output:
+file 'trimmed_*' into trimmedFiles
+
+script:
+singleEnd = true
+adapter1 = "ADATPER_FWD"
+adapter2 = "ADATPER_REV"
+
+if (singleEnd==true)
+"""
+trimming.sh -i reads -s -a1 adapter1 -a2 adapter2
+"""
+else
+"""
+trimming.sh -i reads -a1 adapter1 -a2 adapter2
+"""
+}
+```
 
 ## Discussion Notes
 ### Overview
