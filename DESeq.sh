@@ -1,12 +1,8 @@
 #!/usr/bin/env Rscript 
 
-source("https://bioconductor.org/biocLite.R")
-biocLite("DESeq2") 
+#source("http://bioconductor.org/biocLite.R")
+#biocLite(c("DESeq2","ggplot2","gplots")) 
 library(DESeq2)
-library(annotate)
-library(org.Mm.eg.db)
-library(pheatmap)
-library(RColorBrewer)
 library(ggplot2)
 library(gplots)
 
@@ -29,11 +25,12 @@ resdata <- merge(as.data.frame(res), as.data.frame(counts(dds, normalized=TRUE))
 write.table(resdata,"DGEtable.txt",sep="\t",row.names = T,col.names = T)
 
 ##plot PCA
-
+#options(device=png)
 #plotPCA(rld, intgroup="condition")
 data <- plotPCA(rld, intgroup="condition", returnData=TRUE) 
 percentVar <- round(100 * attr(data, "percentVar"))
-png(filename ="PCA.png",width = 700, height=800)
+
+bitmap(file ="PCA.jpg",type="jpeg")
 ggplot(data, aes(PC1, PC2, color=condition)) + geom_point(size=3) + xlab(paste0("PC1: ",percentVar[1],"% variance")) + ylab(paste0("PC2: ",percentVar[2],"% variance")) + coord_fixed()
 dev.off()
 
