@@ -34,6 +34,7 @@ script:
 	fastqc -o fastqc_logs -f fastq -q ${reads}
 	"""
 }
+
 process trimming{
 
 input:
