@@ -7,10 +7,7 @@ inFiles = "$inPath/*.fastq.gz"
 singleEnd = true
 adapter1 = "ADATPER_FWD"
 adapter2 = "ADATPER_REV"
-
-inFiles
-
-params.in = "/zfs1/ncbi-workshop/AP/RNAseq/*.fastq"
+params.in = "/zfs1/ncbi-workshop/AP/nextflow/*.fastq"
 sequences = file(params.in)
 /* records = "/zfs1/ncbi-workshop/AP/RNAseq/AlignedReads/"  */
 
