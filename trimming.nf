@@ -10,10 +10,10 @@ process trimming{
 script:
     if (singleEnd==true)
     """
-    bash ~/SPEW/trimming.sh -i inPath -s -a1 adapter1 -a2 adapter2
+    trimming.sh -i inPath -s -a1 adapter1 -a2 adapter2
     """
     else
     """ 
-    bash ~/SPEW/trimming.sh -i inPath -a1 adapter1 -a2 adapter2
+    trimming.sh -i inPath -a1 adapter1 -a2 adapter2
     """
 }
