@@ -12,9 +12,13 @@ This project was part of the September 2017 Pitt-NCBI Hackathon in Pittsburgh PA
 ## Dependencies
 Docker
 samtools
-(etc etc etc)
-
-
+FastQC
+cutadapt
+tophat2
+bowtie2
+cufflinks
+R
+NextFlow
 
 ## Methods 
 
@@ -22,6 +26,7 @@ samtools
 
 To create the proof-of-principle simple RNA-seq pipeline, we started with writing simple Bash shell scripts for each step required in the analysis. These individual steps were then combined together by integrating them into NextFlow. In order to allow for seamless running on any workstation, Docker was then used to wrap the Nextflow code. By wrapping into a container such as Docker, all dependencies required for each step are automatically on the users workstation. Docker has the ability to be used by Singularity, allowing the code to be utilized on a High Computing Cluster(HPC).
 
+### Using NextFlow to String together Bash Scripts
 
 
 ## Discussion Notes
